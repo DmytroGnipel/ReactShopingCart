@@ -26,41 +26,63 @@ const ToCartButton = styled.button`
   margin-bottom: 2%;
 `;
 
+
 export default function Card({
   id,
   title,
   image,
   price,
-  changeInput,
-  addHandler,
-  removeHandler,
   amount,
+  addToCart,
+  incrementAmount,
+  decrementAmount,
+  cartIncludes,
+  changeInput,
 }) {
+
+ 
+
+  
+
+
   return (
     <StyledCard>
       <Title title={title} />
-      <Link to={`${id}`}>
-        <img src={image} alt={`item_${id}`} height="350px" />
-      </Link>
-      {price}$
+
+    
+
+      <Link to={`/product/${id}`}><img src={image} alt={`item_${id}`} height="350px" /></Link>
+      <p>{price}$</p>
+
+ 
+
+
+      {
+      !cartIncludes(id) ? <ToCartButton type='button' onClick={()=>{addToCart(id)}}>add to cart</ToCartButton> 
+      : <> 
+      <ToCartButton type='button'>In the cart</ToCartButton>
+      
       <DivForForm>
-        <Form method="post">
-          <button onClick={(e) => removeHandler(e, id)}>-</button>
-        </Form>
-        <input
-          type="text"
-          placeholder="Choose quantity"
-          name="amount"
-          value={amount}
-          onChange={(e) => changeInput(e, id)}
-        />
-        <Form method="post">
-          <button onClick={(e) => addHandler(e, id)}>+</button>
-        </Form>
-      </DivForForm>
       <Form method="post">
-        <ToCartButton>add to cart</ToCartButton>
+      
+        <button type="button" onClick={()=>{decrementAmount(id)}}>-</button>
       </Form>
+      <input
+        placeholder="Choose quantity"
+        value={amount}
+        onChange={(e) => changeInput(e, id)}
+      />
+      <Form method="post">
+        <button type="button" onClick={()=>{incrementAmount(id)}}>+</button>
+      </Form>
+    </DivForForm>
+    </>}
+
+        
+  
     </StyledCard>
   );
 }
+
+
+

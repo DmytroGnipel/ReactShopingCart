@@ -10,11 +10,11 @@ const StyledTopMenu = styled.div`
   justify-content: space-between;
   margin-top: 30px;
 `;
-export default function TopMenu() {
+export default function TopMenu({amount}) {
   return (
     <StyledTopMenu>
       <LeftTopMenu />
-      <RightTopMenu />
+      <RightTopMenu amount={amount} />
     </StyledTopMenu>
   );
 }

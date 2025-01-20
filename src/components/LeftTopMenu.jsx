@@ -11,10 +11,7 @@ const StyledLeftTopMenu = styled.div`
 export default function LeftTopMenu() {
   return (
     <StyledLeftTopMenu>
-      <Link to="/">
-        <img src="./src/assets/images/logo.png" alt="logo" height="60" />
-      </Link>
-
+      <Link to="/"><img src="./src/assets/images/logo.png" alt="logo" height="60" /> </Link>
       <Link to="about">ABOUT US</Link>
       <Link to="products">SHOP</Link>
     </StyledLeftTopMenu>

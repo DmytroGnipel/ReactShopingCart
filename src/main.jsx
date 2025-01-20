@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Goods from "./components/Goods";
 import { getData as goodsLoader } from "./data";
+import ShopCart from "./components/SopCart";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,13 @@ const router = createBrowserRouter([
     path: "/products",
     element: <Goods />,
     loader: goodsLoader,
+    children: [
+      {
+        path: 'cart',
+        element: <ShopCart/>
+      }
+
+    ]
   },
 ]);
 

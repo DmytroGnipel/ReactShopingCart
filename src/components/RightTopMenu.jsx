@@ -1,25 +1,40 @@
 import styled from "styled-components";
 import { ShoppingBasket, UserRound, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const StyledLeftTopMenu = styled.div`
+const StyledRightTopMenu = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 20px;
+  position: relative;
 `;
-export default function LeftTopMenu() {
+
+const StyledCounter = styled.div`
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  background: red;
+  text-align: center;
+  color: white;
+  opacity: 0.8;
+  border-radius: 50%;
+`;
+
+export default function LeftTopMenu({amount}) {
   return (
-    <StyledLeftTopMenu>
-      <a href="cart">
+    <StyledRightTopMenu>
+      <Link to="cart">
+      <StyledCounter>{amount}</StyledCounter>
         <ShoppingBasket color="white" size={48} />
-      </a>
+      </Link>
       <a href="user">
         <UserRound color="white" size={48} />
       </a>
       <a href="search">
         <Search color="white" size={48} />
       </a>
-    </StyledLeftTopMenu>
+    </StyledRightTopMenu>
   );
 }
