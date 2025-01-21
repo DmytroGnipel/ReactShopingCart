@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ShoppingBasket, UserRound, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const StyledRightTopMenu = styled.div`
   height: 60px;
@@ -22,11 +22,12 @@ const StyledCounter = styled.div`
   border-radius: 50%;
 `;
 
-export default function LeftTopMenu({amount}) {
+export default function RightTopMenu() {
+  const {totalProductsInCart} = useOutletContext()
   return (
     <StyledRightTopMenu>
       <Link to="cart">
-      <StyledCounter>{amount}</StyledCounter>
+      {totalProductsInCart && <StyledCounter>{totalProductsInCart}</StyledCounter>}
         <ShoppingBasket color="white" size={48} />
       </Link>
       <a href="user">

@@ -5,26 +5,33 @@ import HomePage from "./components/HomePage";
 import Goods from "./components/Goods";
 import { getData as goodsLoader } from "./data";
 import ShopCart from "./components/SopCart";
+import App from "./components/App";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "products/:productId",
-    element: <button>dsdfsdfsdfsdf</button>,
-  },
-  {
-    path: "/products",
-    element: <Goods />,
+    element: <App />,
     loader: goodsLoader,
     children: [
+      { index: true,
+        element: <HomePage />
+      },
       {
-        path: 'cart',
-        element: <ShopCart/>
-      }
-
+        path: "/products",
+        element: <Goods />,
+        children: [
+          {
+            path: 'cart',
+            element: <ShopCart/>
+          }
+    
+        ]
+      },
+      {
+        path: "products/:productId",
+        element: <button>dsdfsdfsdfsdf</button>,
+      },
     ]
   },
 ]);
